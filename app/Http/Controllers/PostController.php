@@ -15,12 +15,14 @@ class PostController extends Controller
             ->with(['posts' => $posts]);
     }
 
-    public function show($id)
+    // Implicit Binding
+    // public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
+        // 引数 Post $post で投稿データのidを取得できるので、下記不要となる
+        // $post = Post::findOrFail($id);
 
         return view('posts.show')
-            // ->with(['post' => $this->posts[$id]]);
             ->with(['post' => $post]);
     }
 }
